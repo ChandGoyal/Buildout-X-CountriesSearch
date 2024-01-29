@@ -79,9 +79,10 @@ function App() {
   }
 
   return (
-    <div style={containerStyle}>
-      <div style={searchContainerStyle}>
+    <div className="container" style={containerStyle}>
+      <div className="search-container" style={searchContainerStyle}>
         <input
+          className="search-box"
           type="text"
           placeholder="Search for countries..."
           value={searchTerm}
@@ -90,6 +91,7 @@ function App() {
         />
       </div>
       <div
+        className="country-container"
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -101,10 +103,11 @@ function App() {
           <div key={country.cca3} style={cardStyle} className="countryCard">
             <img
               src={country.flags.png}
-              alt={`Flag of ${country.name.common}`}
+              alt={`${country.name.common}`}
               style={imageStyle}
+              className="country-flag"
             />
-            <h2>{country.name.common}</h2>
+            <h2 className="country-name">{country.name.common}</h2>
           </div>
         ))}
       </div>
