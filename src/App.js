@@ -52,27 +52,27 @@ function App() {
 
   const containerStyle = {
     display: "flex",
-    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "center",
     alignItems: "center",
-    minHeight: "100vh",
-    backgroundColor: "#f2f2f2",
-    padding: "20px",
+    height: "100vh",
   };
 
   const searchContainerStyle = {
-    width: "75%",
+    width: "100%",
     display: "flex",
     justifyContent: "center",
     margin: "20px 0",
   };
 
   const searchBoxStyle = {
-    width: "100%",
-    height: "45px",
+    width: "60%",
+    height: "30px",
     borderRadius: "5px",
     padding: "5px",
     fontSize: "18px",
     outline: "none",
+    marginTop: "16px",
   };
 
   if (error) {
@@ -80,7 +80,7 @@ function App() {
   }
 
   return (
-    <div style={containerStyle}>
+    <>
       <div style={searchContainerStyle}>
         <input
           type="text"
@@ -90,26 +90,32 @@ function App() {
           style={searchBoxStyle}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {filteredCountries.map((country) => (
-          <div key={country.cca3} style={cardStyle}>
-            <img
-              src={country.flags.png}
-              alt={`Flag of ${country.name.common}`}
-              style={imageStyle}
-            />
-            <h2>{country.name.common}</h2>
-          </div>
-        ))}
+      <div style={containerStyle}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {filteredCountries.length === 0 ? (
+            <></>
+          ) : (
+            filteredCountries.map((country) => (
+              <div key={country.cca3} style={cardStyle}>
+                <img
+                  src={country.flags.png}
+                  alt={`Flag of ${country.name.common}`}
+                  style={imageStyle}
+                />
+                <h2>{country.name.common}</h2>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
